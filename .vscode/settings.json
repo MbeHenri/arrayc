@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "base.h": "c",
+        "arrayc.h": "c"
+    }
+}

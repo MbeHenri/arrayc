@@ -6,13 +6,11 @@
 
 int main(int argc, char const *argv[])
 {
-    Array ar1 = onesArray(5, 5);
     Array rlt = NULL;
-    op_Array_r(ar1, rlt, *log);
-    op_Array_r(rlt, rlt, *exp);
+    op_Array_r(rlt = onesArray(5, 5), rlt, *exp);
 
-    printfArray(ar1, True);
-    freeArray(ar1);
+    printfArray(rlt, True);
+    freeArray(rlt);
 
     return 0;
 }

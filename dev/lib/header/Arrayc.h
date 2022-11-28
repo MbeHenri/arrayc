@@ -2,6 +2,7 @@
 #define ARRAYC_H_INCLUDED
 #include <stdarg.h>
 #include <math.h>
+#include <stdio.h>
 #include "../header/base.h"
 
 // >
@@ -206,5 +207,75 @@ Array plusArray_p(int n, int nRow, int nCol, ...);
  * * ... : les tableaux
  */
 boolean plusArray_pr(Array result, int n, int nRow, int nCol, ...);
+
+/**
+ * soustraction de deux tableaux avec retour du resultat
+ * -    precondition :
+ * les tableaux doivent avoir les memes dimensions et doivent etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ */
+Array minusArray(Array arg1, Array arg2);
+
+/**
+ * soustraction de deux tableaux avec reference du resultat('result')
+ * -    precondition :
+ * * les tableaux doivent avoir les memes dimensions et doivent etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ * * 'result' doit etre un pointeur
+ */
+boolean minusArray_r(Array arg1, Array arg2, Array result);
+
+/**
+ * multiplication simple de deux tableaux avec retour du resultat
+ * -    precondition :
+ * les tableaux doivent avoir les memes dimensions et doivent etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ */
+Array mulArray(Array arg1, Array arg2);
+
+/**
+ * multiplication simple de deux tableaux avec reference du resultat('result')
+ * -    precondition :
+ * * les tableaux doivent avoir les memes dimensions et doivent etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ * * 'result' doit etre un pointeur
+ */
+boolean mulArray_r(Array arg1, Array arg2, Array result);
+
+/**
+ * multiplication matritielle simple de deux tableaux avec retour du resultat
+ * -    precondition :
+ * * le nombre de colonnes du premier tableau 'arg1' doit etre egale au nombre de lignes du deuxieme tableau
+ * 'arg2'
+ * * 'arg1' et 'arg2' doivent etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ */
+Array matMulArray(Array arg1, Array arg2);
+
+/**
+ * multiplication matritielle de deux tableaux avec reference du resultat('result')
+ * -    precondition :
+ * * le nombre de colonnes du premier tableau 'arg1' doit etre egale au nombre de lignes du deuxieme tableau
+ * 'arg2'
+ * * 'arg1' et 'arg2' doivent etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ */
+boolean matMulArray_r(Array arg1, Array arg2, Array result);
+
+/**
+ * transpose matritielle d'un tableau avec retour du resultat
+ * -    precondition :
+ * * 'arg' doit etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ */
+Array transposeArray(Array arg);
+
+/**
+ * transpose matritielle d'un tableau avec reference du resultat('result')
+ * -    precondition :
+ * * 'arg' doit etre creer par le biais
+ * d'une fonction de creation legitime de Tableau de Type Array
+ */
+boolean transposeArray_r(Array arg,Array result);
 
 #endif // ARRAYC_H_INCLUDED

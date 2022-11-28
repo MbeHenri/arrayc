@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 #include "../header/Arrayc.h"
@@ -126,7 +125,9 @@ boolean op__Array_r(Array arg1, Array arg2, Array result1, double (*f)(double, d
             result1->nRow = rlt->nRow;
             result1->nCol = rlt->nCol;
             free(rlt);
-        }else{
+        }
+        else
+        {
             result1 = rlt;
         }
 
@@ -165,7 +166,8 @@ boolean op_Array_r(Array arg, Array result, double (*f)(double))
             result->nRow = rlt->nRow;
             result->nCol = rlt->nCol;
             free(rlt);
-        }else
+        }
+        else
         {
             result = rlt;
         }
@@ -195,6 +197,105 @@ Array plusArray(Array arg1, Array arg2)
 boolean plusArray_r(Array arg1, Array arg2, Array result)
 {
     return op__Array_r(arg1, arg2, result, *plus_Array);
+}
+
+Array minusArray(Array arg1, Array arg2)
+{
+    return op__Array(arg1, arg2, *minus_Array);
+}
+
+boolean minusArray_r(Array arg1, Array arg2, Array result)
+{
+    return op__Array_r(arg1, arg2, result, *minus_Array);
+}
+
+Array mulArray(Array arg1, Array arg2)
+{
+    return op__Array(arg1, arg2, *plus_Array);
+}
+
+boolean mulArray_r(Array arg1, Array arg2, Array result)
+{
+    return op__Array_r(arg1, arg2, result, *mul_Array);
+}
+
+Array matMulArray(Array arg1, Array arg2)
+{
+    Array rlt = NULL;
+    if (arg1 != NULL && arg2 != NULL)
+    {
+        rlt = zerosArray(arg1->nRow, arg2->nCol);
+        if (rlt != NULL)
+        {
+            int i = 0, j = 0, k = 0;
+            for (i = 0; i < arg1->nRow; i++)
+                for (j = 0; j < arg2->nCol; j++)
+                    for (k = 0; k < arg1->nCol; k++)
+                        rlt->data[i][j] += arg1->data[i][k]*arg2->data[k][j];
+        }
+    }
+    return rlt;
+}
+
+boolean matMulArray_r(Array arg1, Array arg2, Array result)
+{
+    if (arg1 != NULL && arg2 != NULL)
+    {
+        Array rlt = matMulArray(arg1, arg2);
+        if (result != NULL)
+        {
+            free_matrix_double(result->data, result->nRow);
+            result->data = rlt->data;
+            result->nRow = rlt->nRow;
+            result->nCol = rlt->nCol;
+            free(rlt);
+        }
+        else
+        {
+            result = rlt;
+        }
+
+        return True;
+    }
+    return False;
+}
+
+Array transposeArray(Array arg){
+    Array rlt = NULL;
+    if (arg != NULL)
+    {
+        rlt = zerosArray(arg->nCol, arg->nRow);
+        if (rlt != NULL)
+        {
+            int i = 0, j = 0;
+            for (i = 0; i < arg->nCol; i++)
+                for (j = 0; j < arg->nRow; j++)
+                    rlt->data[i][j] = arg->data[j][i];
+        }
+    }
+    return rlt;
+}
+
+boolean transposeArray_r(Array arg,Array result){
+    if (arg != NULL)
+    {
+        Array rlt = transposeArray(arg);
+        if (result != NULL)
+        {
+            free_matrix_double(result->data, result->nRow);
+            result->data = rlt->data;
+            result->nRow = rlt->nRow;
+            result->nCol = rlt->nCol;
+            free(rlt);
+        }
+        else
+        {
+            result = rlt;
+        }
+        
+        return True;
+    }
+    return False;
 }
 
 Array plusArray_p(int n, int nRow, int nCol, ...)

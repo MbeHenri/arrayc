@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 #include "../header/Arrayc.h"
+#include "../header/base.h"
 
 void freeArray(Array arg)
 {
@@ -66,6 +68,39 @@ Array zerosArray(int nRow, int nCol)
 {
     return valArray(nRow, nCol, 0);
 }
+
+
+Array randomArray(int nRow, int nCol , double min , double max){
+    srand(time(NULL));
+    Array rlt = NULL;
+    if (nCol > 0 && nRow > 0)
+    {
+        rlt = malloc(sizeof(ArrayStr));
+        if (rlt != NULL)
+        {
+            rlt->data = create_matrix_double(nRow, nCol);
+            if (rlt->data != NULL)
+            {
+                rlt->nRow = nRow;
+                rlt->nCol = nCol;
+                int i = 0, j = 0;
+                for (i = 0; i < nRow; i++)
+                {
+                    for (j = 0; j < nCol; j++)
+                    {
+                        rlt->data[i][j] = float_rand(min , max);
+                    }
+                }
+            }
+            else
+            {
+                free(rlt);
+            }
+        }
+    }
+    return rlt;
+}
+
 
 void fprintfArray(FILE *stream, Array array, boolean complete)
 {

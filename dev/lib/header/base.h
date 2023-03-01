@@ -8,6 +8,11 @@ typedef enum boolean
 } boolean;
 
 
+/*
+* genère un nombre aleatoire entre min et max
+*/
+float float_rand( float min, float max );
+
 /**
  * creation de matrice d'entier de type 'int' 
 */

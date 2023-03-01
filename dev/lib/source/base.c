@@ -4,6 +4,13 @@
 
 #include "../header/base.h"
 
+
+float float_rand( float min, float max )
+{
+    float scale = rand() / (float) RAND_MAX; /* [0, 1.0] */
+    return min + scale * ( max - min );      /* [min, max] */
+}
+
 int **create_matrix_int(int n_ligne, int n_col)
 {
     int **d = (int **)malloc(n_ligne * sizeof(int *));

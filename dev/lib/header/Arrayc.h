@@ -50,14 +50,19 @@ Array valArray(int nRow, int nCol, double val);
 Array onesArray(int nRow, int nCol);
 
 /**
+ * tableau remplit de 0
+ */
+Array zerosArray(int nRow, int nCol);
+
+/**
  * tableau remplit de maniere aleatoire
  */
 Array randomArray(int nRow, int nCol , float min , float max);
 
-/**
- * tableau remplit de 0
- */
-Array zerosArray(int nRow, int nCol);
+Array constOpApplyArray(Array arg , double const_value, double (*op)(double, double));
+
+boolean constOpApplyArray_r(Array arg , Array result , double const_value , double (*op)(double, double));
+
 
 /**
  * liberation du tableau de Type Array

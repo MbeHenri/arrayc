@@ -69,8 +69,7 @@ Array zerosArray(int nRow, int nCol)
     return valArray(nRow, nCol, 0);
 }
 
-
-Array randomArray(int nRow, int nCol , double min , double max){
+Array randomArray(int nRow, int nCol , float min , float max){
     srand(time(NULL));
     Array rlt = NULL;
     if (nCol > 0 && nRow > 0)
@@ -99,6 +98,54 @@ Array randomArray(int nRow, int nCol , double min , double max){
         }
     }
     return rlt;
+}
+
+
+Array constOpApplyArray(Array arg , double const_value, double (*op)(double, double)){
+    Array rlt = NULL;
+    if(arg != NULL){
+        rlt = malloc(sizeof(ArrayStr));
+        if (rlt != NULL)
+        {
+            rlt->data = create_matrix_double(arg->nRow, arg->nCol);
+            if (rlt->data != NULL)
+            {
+                rlt->nRow = arg->nRow;
+                rlt->nCol = arg->nCol;
+                int i = 0, j = 0;
+                for (i = 0; i < arg->nRow; i++)
+                {
+                    for (j = 0; j < arg->nCol; j++)
+                    {
+                        rlt->data[i][j] = (*op)(const_value , arg->data[i][j]);
+                    }
+                }
+            }
+            else
+            {
+                free(rlt);
+            }
+        }
+    }
+    return rlt;
+}
+
+boolean constOpApplyArray_r(Array arg , Array result, double const_value , double (*op)(double, double)){
+    if(arg != NULL , result != NULL){
+        if(arg->nRow == result->nRow && arg->nCol == result->nCol){
+            int i = 0 , j = 0;
+            for (i = 0; i < arg->nRow; i++)
+            {
+                for (j = 0; j < arg->nCol; j++)
+                {
+                    result->data[i][j] = (*op)(const_value , arg->data[i][j]);
+                }
+            }
+            return True;
+        }
+    }
+
+    return False;
 }
 
 

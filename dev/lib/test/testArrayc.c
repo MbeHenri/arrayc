@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-
-#include "../header/Arrayc.h"
+#include <arrayc.h>
 
 int main(int argc, char const *argv[])
 {

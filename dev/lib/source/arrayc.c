@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../header/Arrayc.h"
+#include "../header/arrayc.h"
 
 void freeArray(Array arg)
 {

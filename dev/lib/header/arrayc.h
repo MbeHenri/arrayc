@@ -1,9 +1,7 @@
 #ifndef ARRAYC_H_INCLUDED
 #define ARRAYC_H_INCLUDED
-#include <stdarg.h>
-#include <math.h>
 #include <stdio.h>
-#include "../header/base.h"
+#include "./base.h"
 
 // >
 // >    DEFINITIONS

@@ -1,12 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include <arrayc.h>
+#include <arrayc/arrayc.h>
 
-int main(int argc, char const *argv[])
+double sqrtplus(double d)
+{
+    return sqrt(d + 1);
+}
+
+int main()
 {
     Array rlt = NULL;
-    op_Array_r(rlt = onesArray(5, 5), rlt, *exp);
+    op_Array_r(rlt = onesArray(5, 5), rlt, *sqrtplus);
 
     printfArray(rlt, True);
     freeArray(rlt);

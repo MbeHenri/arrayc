@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*.xml": "xml",
-        "*.js": "javascript",
-        "arrayc.h": "c"
-    }
-}

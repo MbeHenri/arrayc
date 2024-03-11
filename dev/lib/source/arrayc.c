@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
+#include <stdarg.h>
 
 #include "../header/arrayc.h"
 
